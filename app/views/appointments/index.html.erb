@@ -9,8 +9,7 @@
       <th>Doctor name</th>
       <th>Reason</th>
       <th>Appointment date</th>
-      <th>Doctor</th>
-      <th>Pet</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,8 +22,7 @@
         <td><%= appointment.doctor_name %></td>
         <td><%= appointment.reason %></td>
         <td><%= appointment.appointment_date %></td>
-        <td><%= appointment.doctor_id %></td>
-        <td><%= appointment.pet_id %></td>
+
         <td><%= link_to 'Show', appointment %></td>
         <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
         <td><%= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
