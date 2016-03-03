@@ -1,0 +1,2227 @@
+  [1m[36m (66.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  select sqlite_version(*)
+  [1m[36m (132.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateDoctors (20160302073407)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (37.5ms)[0m  CREATE TABLE "doctors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address" varchar, "city" varchar, "state" varchar, "zip" integer, "certified_by" varchar, "experience" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160302073407"]]
+  [1m[35m (25.0ms)[0m  commit transaction
+Migrating to CreatePets (20160302074132)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (66.5ms)[0m  CREATE TABLE "pets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "breed" varchar, "type" varchar, "age" integer, "weight" integer, "last_appointment" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160302074132"]]
+  [1m[35m (17.0ms)[0m  commit transaction
+Migrating to CreateAppointments (20160302074414)
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (64.5ms)[0m  CREATE TABLE "appointments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pet_name" varchar, "doctor_name" varchar, "reason" text, "appointment_date" date, "doctor_id" integer, "pet_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.5ms)[0m  [1mCREATE  INDEX "index_appointments_on_doctor_id" ON "appointments" ("doctor_id")[0m
+  [1m[35m (0.5ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_appointments_on_doctor_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_appointments_on_doctor_id' AND type='index'
+
+  [1m[36m (0.5ms)[0m  [1mCREATE  INDEX "index_appointments_on_pet_id" ON "appointments" ("pet_id")[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160302074414"]]
+  [1m[36m (18.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (1.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_appointments_on_pet_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_appointments_on_pet_id' AND type='index'
+[0m
+  [1m[35m (0.5ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_appointments_on_doctor_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_appointments_on_doctor_id' AND type='index'
+
+
+
+Started GET "/" for ::1 at 2016-03-02 02:55:33 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/railties-4.2.5/lib/rails/templates/rails/welcome/index.html.erb (15.0ms)
+Completed 200 OK in 169ms (Views: 96.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-02 02:58:14 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 12888ms (Views: 12885.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 02:58:27 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 02:58:27 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 02:58:27 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 02:58:27 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 02:58:27 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 02:58:28 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 02:58:28 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 02:58:28 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 02:58:28 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 02:58:28 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 02:58:28 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 02:58:28 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 02:58:28 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 02:58:29 -0500
+
+
+Started GET "/" for ::1 at 2016-03-02 03:05:21 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 206ms (Views: 202.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:05:21 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:05:21 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:05:21 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 03:05:21 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 03:05:21 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:05:21 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 03:05:21 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 03:05:22 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 03:05:22 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:05:22 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:05:22 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:05:22 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:05:22 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 03:05:22 -0500
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 03:05:29 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[35mAppointment Load (1.5ms)[0m  SELECT "appointments".* FROM "appointments"
+  Rendered appointments/index.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 267ms (Views: 213.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/doctors" for ::1 at 2016-03-02 03:05:32 -0500
+Processing by DoctorsController#index as HTML
+  [1m[36mDoctor Load (0.0ms)[0m  [1mSELECT "doctors".* FROM "doctors"[0m
+  Rendered doctors/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 180ms (Views: 169.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/doctors/new" for ::1 at 2016-03-02 03:05:34 -0500
+Processing by DoctorsController#new as HTML
+  Rendered doctors/_form.html.erb (250.1ms)
+  Rendered doctors/new.html.erb within layouts/application (305.6ms)
+Completed 200 OK in 547ms (Views: 509.1ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/doctors" for ::1 at 2016-03-02 03:09:38 -0500
+Processing by DoctorsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tIf/bou1KJGGhUcKe+WXBRufXDgx9L2g+JHYnxNQOmnyyyBcCvT8lr4QqGcb8bbMSu4eIwDQlvhLJBJgvQMgOw==", "doctor"=>{"name"=>"Bob", "address"=>"4510 13th Ave S", "city"=>"Fargo", "state"=>"North Dakota", "zip"=>"58121", "certified_by"=>"MIT", "experience"=>"10"}, "commit"=>"Create Doctor"}
+  [1m[35m (0.5ms)[0m  begin transaction
+  [1m[36mSQL (20.0ms)[0m  [1mINSERT INTO "doctors" ("name", "address", "city", "state", "zip", "certified_by", "experience", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Bob"], ["address", "4510 13th Ave S"], ["city", "Fargo"], ["state", "North Dakota"], ["zip", 58121], ["certified_by", "MIT"], ["experience", 10], ["created_at", "2016-03-02 08:09:38.898748"], ["updated_at", "2016-03-02 08:09:38.898748"]]
+  [1m[35m (18.0ms)[0m  commit transaction
+Redirected to http://localhost:4444/doctors/1
+Completed 302 Found in 104ms (ActiveRecord: 38.5ms)
+
+
+Started GET "/doctors/1" for ::1 at 2016-03-02 03:09:39 -0500
+Processing by DoctorsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDoctor Load (1.0ms)[0m  [1mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered doctors/show.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 607ms (Views: 380.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/doctors" for ::1 at 2016-03-02 03:09:44 -0500
+Processing by DoctorsController#index as HTML
+  [1m[35mDoctor Load (0.5ms)[0m  SELECT "doctors".* FROM "doctors"
+  Rendered doctors/index.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 194ms (Views: 191.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/doctors/new" for ::1 at 2016-03-02 03:09:46 -0500
+Processing by DoctorsController#new as HTML
+  Rendered doctors/_form.html.erb (14.0ms)
+  Rendered doctors/new.html.erb within layouts/application (24.0ms)
+Completed 200 OK in 331ms (Views: 328.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/doctors" for ::1 at 2016-03-02 03:10:15 -0500
+Processing by DoctorsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Di7vhwlKhtUOyX5ZiANgG+Tia/HomGCQKT34JRzPuftIYjC1iAtS0jZckTToF0HStZMp6tm8S8iaiDLaspyjqQ==", "doctor"=>{"name"=>"Susan", "address"=>"222 Las Colinas Blvd W #1250, Irving, TX 75039, United States", "city"=>"Irving", "state"=>"Texas", "zip"=>"75039", "certified_by"=>"Yale", "experience"=>"12"}, "commit"=>"Create Doctor"}
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (24.5ms)[0m  INSERT INTO "doctors" ("name", "address", "city", "state", "zip", "certified_by", "experience", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)  [["name", "Susan"], ["address", "222 Las Colinas Blvd W #1250, Irving, TX 75039, United States"], ["city", "Irving"], ["state", "Texas"], ["zip", 75039], ["certified_by", "Yale"], ["experience", 12], ["created_at", "2016-03-02 08:10:15.735611"], ["updated_at", "2016-03-02 08:10:15.735611"]]
+  [1m[36m (20.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:4444/doctors/2
+Completed 302 Found in 91ms (ActiveRecord: 45.0ms)
+
+
+Started GET "/doctors/2" for ::1 at 2016-03-02 03:10:15 -0500
+Processing by DoctorsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mDoctor Load (1.0ms)[0m  SELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered doctors/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 262ms (Views: 251.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/doctors/2" for ::1 at 2016-03-02 03:10:52 -0500
+Processing by DoctorsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDoctor Load (1.0ms)[0m  [1mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered doctors/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 238ms (Views: 228.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 03:10:53 -0500
+
+
+Started GET "/" for ::1 at 2016-03-02 03:10:56 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 197ms (Views: 195.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/doctors" for ::1 at 2016-03-02 03:10:58 -0500
+Processing by DoctorsController#index as HTML
+  [1m[35mDoctor Load (1.0ms)[0m  SELECT "doctors".* FROM "doctors"
+  Rendered doctors/index.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 205ms (Views: 203.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pets" for ::1 at 2016-03-02 03:11:00 -0500
+Processing by PetsController#index as HTML
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 314ms (Views: 300.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/pets/new" for ::1 at 2016-03-02 03:11:02 -0500
+Processing by PetsController#new as HTML
+  Rendered pets/_form.html.erb (14.0ms)
+  Rendered pets/new.html.erb within layouts/application (22.0ms)
+Completed 200 OK in 250ms (Views: 229.1ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 03:12:10 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+HgTB8c8mRN3Sjb97kEPJzoH1dP3ECMSsxYJh11IZVq+NMw1Rn1NFE/f2ZCOVS7ua3aXyMY0CEoAo8N48xt/CA==", "pet"=>{"name"=>"Raphael", "breed"=>"Marine Coon", "type"=>"Cat", "age"=>"2", "weight"=>"350", "last_appointment"=>"03/02/2016"}, "commit"=>"Create Pet"}
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::SubclassNotFound (Invalid single-table inheritance type: Cat is not a subclass of Pet):
+  app/controllers/pets_controller.rb:27:in `create'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (9.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (143.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (143.1ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (304.6ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 03:12:29 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dr01gImd3C9J0rqcqFnTNvyKFdIfAywF+H3HT4hJs3Mw8eqyCNwIKHFHVfHITfL/rftXyS4nB11LyA2wJhqpIQ==", "pet"=>{"name"=>"Raphael", "breed"=>"Marine Coon", "type"=>"cat", "age"=>"2", "weight"=>"350", "last_appointment"=>"03/02/2016"}, "commit"=>"Create Pet"}
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::SubclassNotFound (Invalid single-table inheritance type: cat is not a subclass of Pet):
+  app/controllers/pets_controller.rb:27:in `create'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (150.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (132.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (327.6ms)
+
+
+Started GET "/doctors" for ::1 at 2016-03-02 03:12:39 -0500
+Processing by DoctorsController#index as HTML
+  [1m[35mDoctor Load (0.0ms)[0m  SELECT "doctors".* FROM "doctors"
+  Rendered doctors/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 193ms (Views: 190.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pets" for ::1 at 2016-03-02 03:12:41 -0500
+Processing by PetsController#index as HTML
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 332ms (Views: 329.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pets/new" for ::1 at 2016-03-02 03:12:46 -0500
+Processing by PetsController#new as HTML
+  Rendered pets/_form.html.erb (9.0ms)
+  Rendered pets/new.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 186ms (Views: 183.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 03:13:49 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"d+wp7/1FKLSNraTYLSQkvrVDjTL2nl05A4SbxhFKDwMxoPbdfAT8s7U4S7VNMAV35DLPKce6dmGwMVE5vxkVUQ==", "pet"=>{"name"=>"Elliot", "breed"=>"Cass", "type"=>"cat", "age"=>"12", "weight"=>"123", "last_appointment"=>"03/02/2016"}, "commit"=>"Create Pet"}
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::SubclassNotFound (Invalid single-table inheritance type: cat is not a subclass of Pet):
+  app/controllers/pets_controller.rb:27:in `create'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (12.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (256.1ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (135.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (324.1ms)
+
+
+Started GET "/pets/new" for ::1 at 2016-03-02 03:19:03 -0500
+Processing by PetsController#new as HTML
+  Rendered pets/_form.html.erb (17.5ms)
+  Rendered pets/new.html.erb within layouts/application (28.0ms)
+Completed 200 OK in 414ms (Views: 301.1ms | ActiveRecord: 8.0ms)
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:19:04 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:19:04 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:19:04 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 03:19:04 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 03:19:04 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:19:04 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 03:19:04 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 03:19:04 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 03:19:05 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:19:05 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:19:05 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:19:05 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:19:05 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 03:19:05 -0500
+
+
+Started POST "/pets" for ::1 at 2016-03-02 03:19:34 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"H6E5ayBswHF4Aa8ddfzdHNFUTfrIkAFGPXulZ72+8lpZ7eZZoS0UdkCUQHAV6PzVgCUP4fm0Kh6Ozm+YE+3oCA==", "pet"=>{"name"=>"elliot", "breed"=>"cass", "type"=>"cat", "age"=>"12", "weight"=>"123", "last_appointment"=>"2/12/2016"}, "commit"=>"Create Pet"}
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::SubclassNotFound (Invalid single-table inheritance type: cat is not a subclass of Pet):
+  app/controllers/pets_controller.rb:27:in `create'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (126.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (116.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (264.1ms)
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RenamePetTypeColumn (20160302082223)
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36m (40.0ms)[0m  [1mCREATE TEMPORARY TABLE "apets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "breed" varchar, "pet_type" varchar, "age" integer, "weight" integer, "last_appointment" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  SELECT * FROM "pets"
+  [1m[36m (28.0ms)[0m  [1mDROP TABLE "pets"[0m
+  [1m[35m (0.0ms)[0m  CREATE TABLE "pets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "breed" varchar, "pet_type" varchar, "age" integer, "weight" integer, "last_appointment" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "apets"[0m
+  [1m[35m (17.0ms)[0m  DROP TABLE "apets"
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160302082223"]]
+  [1m[35m (40.0ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_appointments_on_pet_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_appointments_on_pet_id' AND type='index'
+
+  [1m[36m (1.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_appointments_on_doctor_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_appointments_on_doctor_id' AND type='index'
+[0m
+
+
+Started GET "/pets/new" for ::1 at 2016-03-02 03:24:43 -0500
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by PetsController#new as HTML
+  Rendered pets/_form.html.erb (9.5ms)
+  Rendered pets/new.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 256ms (Views: 217.1ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:24:44 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:24:44 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:24:44 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 03:24:44 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 03:24:44 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:24:44 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 03:24:44 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 03:24:44 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 03:24:44 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:24:44 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:24:44 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:24:44 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:24:44 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 03:24:45 -0500
+
+
+Started POST "/pets" for ::1 at 2016-03-02 03:25:05 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"I0PY68UTrUjzJSWM547l9snpIdMYna3DHn650pNtGN9lDwfZRFJ5T8uwyuGHmsQ/mJhjyCm5hputy3MtPT4CjQ==", "pet"=>{"name"=>"elliot", "breed"=>"case", "pet_type"=>"cat", "age"=>"12", "weight"=>"123", "last_appointment"=>"02/2/2016"}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (16.0ms)[0m  INSERT INTO "pets" ("name", "breed", "age", "weight", "last_appointment", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "elliot"], ["breed", "case"], ["age", 12], ["weight", 123], ["last_appointment", "02/2/2016"], ["created_at", "2016-03-02 08:25:05.457942"], ["updated_at", "2016-03-02 08:25:05.457942"]]
+  [1m[36m (18.5ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:4444/pets/1
+Completed 302 Found in 70ms (ActiveRecord: 35.5ms)
+
+
+Started GET "/pets/1" for ::1 at 2016-03-02 03:25:05 -0500
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPet Load (1.0ms)[0m  SELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered pets/show.html.erb within layouts/application (56.0ms)
+Completed 500 Internal Server Error in 82ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined method `type' for #<Pet:0x6ff5400>):
+    12: 
+    13: <p>
+    14:   <strong>Type:</strong>
+    15:   <%= @pet.type %>
+    16: </p>
+    17: 
+    18: <p>
+  app/views/pets/show.html.erb:15:in `_app_views_pets_show_html_erb___1073546166_58797168'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (11.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (202.1ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (172.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (393.6ms)
+
+
+Started GET "/pets/1" for ::1 at 2016-03-02 03:25:42 -0500
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPet Load (0.0ms)[0m  [1mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered pets/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 224ms (Views: 216.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:25:42 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:25:42 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:25:43 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 03:25:43 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 03:25:43 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 03:25:43 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 03:25:43 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 03:25:43 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 03:25:43 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:25:43 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:25:43 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:25:43 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 03:25:43 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 03:25:43 -0500
+
+
+Started GET "/pets" for ::1 at 2016-03-02 03:26:13 -0500
+Processing by PetsController#index as HTML
+  [1m[35mPet Load (3.0ms)[0m  SELECT "pets".* FROM "pets"
+  Rendered pets/index.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 222ms (Views: 216.5ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 03:26:17 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[36mAppointment Load (1.0ms)[0m  [1mSELECT "appointments".* FROM "appointments"[0m
+  Rendered appointments/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 172ms (Views: 159.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/appointments/new" for ::1 at 2016-03-02 03:26:21 -0500
+Processing by AppointmentsController#new as HTML
+  Rendered appointments/_form.html.erb (128.0ms)
+  Rendered appointments/new.html.erb within layouts/application (141.5ms)
+Completed 200 OK in 381ms (Views: 353.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pets" for ::1 at 2016-03-02 03:26:59 -0500
+Processing by PetsController#index as HTML
+  [1m[35mPet Load (16.5ms)[0m  SELECT "pets".* FROM "pets"
+  Rendered pets/index.html.erb within layouts/application (23.0ms)
+Completed 200 OK in 220ms (Views: 201.5ms | ActiveRecord: 16.5ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 03:27:02 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[36mAppointment Load (0.0ms)[0m  [1mSELECT "appointments".* FROM "appointments"[0m
+  Rendered appointments/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 166ms (Views: 163.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/appointments/new" for ::1 at 2016-03-02 03:27:04 -0500
+Processing by AppointmentsController#new as HTML
+  Rendered appointments/_form.html.erb (13.0ms)
+  Rendered appointments/new.html.erb within layouts/application (23.0ms)
+Completed 200 OK in 210ms (Views: 208.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/appointments" for ::1 at 2016-03-02 03:29:04 -0500
+Processing by AppointmentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"eqCVoRu+YmdO+PD04woN/OpobXuZOl4IYrMvTNrUppE87EqTmv+2YHZtH5mDHiw1uxkvYKgedVDRBuWzdIe8ww==", "appointment"=>{"pet_name"=>"cassy", "doctor_name"=>"Bob", "reason"=>"dsfsadffff", "appointment_date(1i)"=>"2016", "appointment_date(2i)"=>"3", "appointment_date(3i)"=>"2", "doctor_id"=>"1", "pet_id"=>"2"}, "commit"=>"Create Appointment"}
+  [1m[35m (0.5ms)[0m  begin transaction
+  [1m[36mSQL (26.5ms)[0m  [1mINSERT INTO "appointments" ("pet_name", "doctor_name", "reason", "doctor_id", "pet_id", "appointment_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["pet_name", "cassy"], ["doctor_name", "Bob"], ["reason", "dsfsadffff"], ["doctor_id", 1], ["pet_id", 2], ["appointment_date", "2016-03-02"], ["created_at", "2016-03-02 08:29:04.794498"], ["updated_at", "2016-03-02 08:29:04.794498"]]
+  [1m[35m (58.0ms)[0m  commit transaction
+Redirected to http://localhost:4444/appointments/1
+Completed 302 Found in 135ms (ActiveRecord: 85.0ms)
+
+
+Started GET "/appointments/1" for ::1 at 2016-03-02 03:29:04 -0500
+Processing by AppointmentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAppointment Load (1.0ms)[0m  [1mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mDoctor Load (1.0ms)[0m  SELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered appointments/show.html.erb within layouts/application (351.6ms)
+Completed 200 OK in 595ms (Views: 579.6ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/doctors" for ::1 at 2016-03-02 03:29:08 -0500
+Processing by DoctorsController#index as HTML
+  [1m[35mDoctor Load (1.0ms)[0m  SELECT "doctors".* FROM "doctors"
+  Rendered doctors/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 203ms (Views: 199.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/doctors/2" for ::1 at 2016-03-02 03:29:18 -0500
+Processing by DoctorsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mDoctor Load (0.5ms)[0m  [1mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered doctors/show.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 202ms (Views: 194.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2016-03-02 22:04:27 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 2382ms (Views: 2321.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:04:32 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:04:32 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:04:32 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 22:04:32 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 22:04:32 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 22:04:32 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:04:32 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 22:04:32 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 22:04:33 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:04:33 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:04:33 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:04:33 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:04:33 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 22:04:33 -0500
+
+
+Started GET "/pets" for ::1 at 2016-03-02 22:04:51 -0500
+Processing by PetsController#index as HTML
+  [1m[35mPet Load (1.0ms)[0m  SELECT "pets".* FROM "pets"
+  Rendered pets/index.html.erb within layouts/application (32.5ms)
+Completed 200 OK in 492ms (Views: 404.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:05:12 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[36mAppointment Load (0.0ms)[0m  [1mSELECT "appointments".* FROM "appointments"[0m
+  [1m[35mDoctor Load (1.0ms)[0m  SELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPet Load (0.0ms)[0m  [1mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered appointments/index.html.erb within layouts/application (762.8ms)
+Completed 200 OK in 953ms (Views: 908.8ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:05:13 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[35mAppointment Load (2.0ms)[0m  SELECT "appointments".* FROM "appointments"
+  [1m[36mDoctor Load (1.0ms)[0m  [1mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPet Load (0.0ms)[0m  SELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered appointments/index.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 159ms (Views: 153.5ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/doctors" for ::1 at 2016-03-02 22:06:45 -0500
+Processing by DoctorsController#index as HTML
+  [1m[36mDoctor Load (1.0ms)[0m  [1mSELECT "doctors".* FROM "doctors"[0m
+  Rendered doctors/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 178ms (Views: 175.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:06:53 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[35mAppointment Load (1.0ms)[0m  SELECT "appointments".* FROM "appointments"
+  [1m[36mDoctor Load (1.0ms)[0m  [1mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPet Load (0.0ms)[0m  SELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered appointments/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 189ms (Views: 185.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:09:12 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[36mAppointment Load (0.0ms)[0m  [1mSELECT "appointments".* FROM "appointments"[0m
+  [1m[35mDoctor Load (0.0ms)[0m  SELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPet Load (0.0ms)[0m  [1mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered appointments/index.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 203ms (Views: 201.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:12 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:12 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:12 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 22:09:12 -0500
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:12 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 22:09:12 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 22:09:12 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 22:09:12 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 22:09:12 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:13 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:13 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:13 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:13 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 22:09:13 -0500
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:09:18 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[35mAppointment Load (1.0ms)[0m  SELECT "appointments".* FROM "appointments"
+  [1m[36mDoctor Load (1.0ms)[0m  [1mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPet Load (1.0ms)[0m  SELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered appointments/index.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 230ms (Views: 226.0ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:18 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:18 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:18 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:18 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 22:09:19 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 22:09:19 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 22:09:19 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 22:09:19 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 22:09:19 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:19 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:19 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:19 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:19 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 22:09:19 -0500
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:09:34 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[36mAppointment Load (1.0ms)[0m  [1mSELECT "appointments".* FROM "appointments"[0m
+  [1m[35mDoctor Load (1.0ms)[0m  SELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered appointments/index.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 193ms (Views: 187.0ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:34 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:34 -0500
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:34 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 22:09:35 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 22:09:35 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:35 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 22:09:35 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 22:09:35 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 22:09:35 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:35 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:35 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:35 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:35 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 22:09:35 -0500
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:09:48 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[35mAppointment Load (1.0ms)[0m  SELECT "appointments".* FROM "appointments"
+  [1m[36mDoctor Load (1.0ms)[0m  [1mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPet Load (1.0ms)[0m  SELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered appointments/index.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 188ms (Views: 182.1ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 22:09:49 -0500
+
+
+Started GET "/appointments/1" for ::1 at 2016-03-02 22:10:02 -0500
+Processing by AppointmentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAppointment Load (0.0ms)[0m  [1mSELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered appointments/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 187ms (Views: 154.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:10:32 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[35mAppointment Load (0.0ms)[0m  SELECT "appointments".* FROM "appointments"
+  Rendered appointments/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 236ms (Views: 234.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:10:53 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[36mAppointment Load (1.0ms)[0m  [1mSELECT "appointments".* FROM "appointments"[0m
+  Rendered appointments/index.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 166ms (Views: 163.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pets" for ::1 at 2016-03-02 22:10:56 -0500
+Processing by PetsController#index as HTML
+  [1m[35mPet Load (1.0ms)[0m  SELECT "pets".* FROM "pets"
+  Rendered pets/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 276ms (Views: 273.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/doctors" for ::1 at 2016-03-02 22:10:59 -0500
+Processing by DoctorsController#index as HTML
+  [1m[36mDoctor Load (1.0ms)[0m  [1mSELECT "doctors".* FROM "doctors"[0m
+  Rendered doctors/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 162ms (Views: 158.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-02 22:11:00 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 206ms (Views: 203.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:14:27 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[35mAppointment Load (1.0ms)[0m  SELECT "appointments".* FROM "appointments"
+  Rendered appointments/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 163ms (Views: 159.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/appointments/new" for ::1 at 2016-03-02 22:14:31 -0500
+Processing by AppointmentsController#new as HTML
+  Rendered appointments/_form.html.erb (282.7ms)
+  Rendered appointments/new.html.erb within layouts/application (340.9ms)
+Completed 500 Internal Server Error in 355ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `provider_id' for #<Appointment:0x47bb4e0>):
+    14:   <div class="field">
+    15:     <%= f.label :pet_name %><br>
+    16:     <%= f.text_field :pet_name %>
+    17:     <%= f.collection_select :provider_id, Pet.order(:name),:id,:name, include_blank: true %>
+    18: 
+    19: 	
+    20:   </div>
+  app/views/appointments/_form.html.erb:17:in `block in _app_views_appointments__form_html_erb__1053218509_69243756'
+  app/views/appointments/_form.html.erb:1:in `_app_views_appointments__form_html_erb__1053218509_69243756'
+  app/views/appointments/new.html.erb:3:in `_app_views_appointments_new_html_erb___527513444_37605312'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (11.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (139.9ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (108.6ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (246.5ms)
+
+
+Started GET "/appointments/new" for ::1 at 2016-03-02 22:14:33 -0500
+Processing by AppointmentsController#new as HTML
+  Rendered appointments/_form.html.erb (21.5ms)
+  Rendered appointments/new.html.erb within layouts/application (28.0ms)
+Completed 500 Internal Server Error in 45ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `provider_id' for #<Appointment:0x7dcef08>):
+    14:   <div class="field">
+    15:     <%= f.label :pet_name %><br>
+    16:     <%= f.text_field :pet_name %>
+    17:     <%= f.collection_select :provider_id, Pet.order(:name),:id,:name, include_blank: true %>
+    18: 
+    19: 	
+    20:   </div>
+  app/views/appointments/_form.html.erb:17:in `block in _app_views_appointments__form_html_erb__1053218509_66187548'
+  app/views/appointments/_form.html.erb:1:in `_app_views_appointments__form_html_erb__1053218509_66187548'
+  app/views/appointments/new.html.erb:3:in `_app_views_appointments_new_html_erb___527513444_65973432'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (11.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (103.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (105.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (230.1ms)
+
+
+Started GET "/appointments/new" for ::1 at 2016-03-02 22:14:44 -0500
+Processing by AppointmentsController#new as HTML
+  [1m[36mPet Load (0.0ms)[0m  [1mSELECT "pets".* FROM "pets"  ORDER BY "pets"."name" ASC[0m
+  Rendered appointments/_form.html.erb (68.0ms)
+  Rendered appointments/new.html.erb within layouts/application (78.0ms)
+Completed 200 OK in 246ms (Views: 243.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:14:44 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:14:44 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 22:14:44 -0500
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:14:44 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:14:45 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 22:14:45 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 22:14:45 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 22:14:45 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 22:14:45 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:14:45 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:14:45 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:14:45 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:14:45 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 22:14:45 -0500
+
+
+Started GET "/appointments/new" for ::1 at 2016-03-02 22:15:32 -0500
+Processing by AppointmentsController#new as HTML
+  [1m[35mPet Load (1.0ms)[0m  SELECT "pets".* FROM "pets"  ORDER BY "pets"."name" ASC
+  Rendered appointments/_form.html.erb (16.0ms)
+  Rendered appointments/new.html.erb within layouts/application (24.0ms)
+Completed 200 OK in 200ms (Views: 197.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:15:32 -0500
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:15:32 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 22:15:32 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:15:32 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:15:32 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 22:15:32 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 22:15:32 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 22:15:32 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 22:15:33 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:15:33 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:15:33 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:15:33 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:15:33 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 22:15:33 -0500
+
+
+Started GET "/appointments/new" for ::1 at 2016-03-02 22:16:11 -0500
+Processing by AppointmentsController#new as HTML
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT "pets".* FROM "pets"  ORDER BY "pets"."name" ASC[0m
+  [1m[35mDoctor Load (1.0ms)[0m  SELECT "doctors".* FROM "doctors"  ORDER BY "doctors"."name" ASC
+  Rendered appointments/_form.html.erb (27.0ms)
+  Rendered appointments/new.html.erb within layouts/application (35.5ms)
+Completed 200 OK in 246ms (Views: 241.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 22:16:12 -0500
+
+
+Started GET "/appointments/new" for ::1 at 2016-03-02 22:16:36 -0500
+Processing by AppointmentsController#new as HTML
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT "pets".* FROM "pets"  ORDER BY "pets"."name" ASC[0m
+  [1m[35mDoctor Load (1.0ms)[0m  SELECT "doctors".* FROM "doctors"  ORDER BY "doctors"."name" ASC
+  Rendered appointments/_form.html.erb (24.0ms)
+  Rendered appointments/new.html.erb within layouts/application (43.0ms)
+Completed 200 OK in 252ms (Views: 247.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 22:16:36 -0500
+
+
+Started GET "/appointments/new" for ::1 at 2016-03-02 22:17:19 -0500
+Processing by AppointmentsController#new as HTML
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT "pets".* FROM "pets"  ORDER BY "pets"."name" ASC[0m
+  [1m[35mDoctor Load (1.0ms)[0m  SELECT "doctors".* FROM "doctors"  ORDER BY "doctors"."name" ASC
+  Rendered appointments/_form.html.erb (25.0ms)
+  Rendered appointments/new.html.erb within layouts/application (35.0ms)
+Completed 200 OK in 244ms (Views: 240.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:17:19 -0500
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:17:19 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:17:19 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 22:17:19 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:17:19 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 22:17:19 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 22:17:19 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 22:17:19 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 22:17:20 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:17:20 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:17:20 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:17:20 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:17:20 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 22:17:20 -0500
+
+
+Started GET "/appointments/new" for ::1 at 2016-03-02 22:19:19 -0500
+Processing by AppointmentsController#new as HTML
+  [1m[36mPet Load (0.5ms)[0m  [1mSELECT "pets".* FROM "pets"  ORDER BY "pets"."name" ASC[0m
+  [1m[35mDoctor Load (1.0ms)[0m  SELECT "doctors".* FROM "doctors"  ORDER BY "doctors"."name" ASC
+  Rendered appointments/_form.html.erb (123.0ms)
+  Rendered appointments/new.html.erb within layouts/application (129.0ms)
+Completed 200 OK in 348ms (Views: 300.6ms | ActiveRecord: 9.5ms)
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:19:19 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:19:19 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:19:19 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 22:19:19 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:19:19 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 22:19:19 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 22:19:19 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 22:19:19 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 22:19:20 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:19:20 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:19:20 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:19:20 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:19:20 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 22:19:20 -0500
+
+
+Started POST "/appointments" for ::1 at 2016-03-02 22:20:02 -0500
+Processing by AppointmentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Zt0Jyw0RdxtZSdVEAmbz+Z5RkaWFWuJ8oYWy1MWrhG8puNQ3i627Z/9hy4zHCSYqdUGpJdtAMX8k4FDWreRo7w==", "appointment"=>{"pet_id"=>"1", "doctor_id"=>"1", "reason"=>"sdf", "appointment_date(1i)"=>"2016", "appointment_date(2i)"=>"3", "appointment_date(3i)"=>"4"}, "commit"=>"Create Appointment"}
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (54.0ms)[0m  INSERT INTO "appointments" ("reason", "doctor_id", "pet_id", "appointment_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["reason", "sdf"], ["doctor_id", 1], ["pet_id", 1], ["appointment_date", "2016-03-04"], ["created_at", "2016-03-03 03:20:02.316916"], ["updated_at", "2016-03-03 03:20:02.316916"]]
+  [1m[36m (19.5ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:4444/appointments/2
+Completed 302 Found in 101ms (ActiveRecord: 73.5ms)
+
+
+Started GET "/appointments/2" for ::1 at 2016-03-02 22:20:02 -0500
+Processing by AppointmentsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mAppointment Load (1.0ms)[0m  SELECT  "appointments".* FROM "appointments" WHERE "appointments"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered appointments/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 184ms (Views: 173.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:29:55 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[36mAppointment Load (1.0ms)[0m  [1mSELECT "appointments".* FROM "appointments"[0m
+  [1m[35mPet Load (1.0ms)[0m  SELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered appointments/index.html.erb within layouts/application (24.5ms)
+Completed 500 Internal Server Error in 46ms (ActiveRecord: 2.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Pet with 'id'=2):
+  app/views/appointments/index.html.erb:21:in `block in _app_views_appointments_index_html_erb__883517054_47576328'
+  app/views/appointments/index.html.erb:19:in `_app_views_appointments_index_html_erb__883517054_47576328'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (11.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (103.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (126.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (258.1ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:29:56 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[36mAppointment Load (1.0ms)[0m  [1mSELECT "appointments".* FROM "appointments"[0m
+  [1m[35mPet Load (1.0ms)[0m  SELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered appointments/index.html.erb within layouts/application (19.5ms)
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 2.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Pet with 'id'=2):
+  app/views/appointments/index.html.erb:21:in `block in _app_views_appointments_index_html_erb__883517054_71556552'
+  app/views/appointments/index.html.erb:19:in `_app_views_appointments_index_html_erb__883517054_71556552'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (101.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (141.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (263.1ms)
+
+
+Started GET "/pets" for ::1 at 2016-03-02 22:30:10 -0500
+Processing by PetsController#index as HTML
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 197ms (Views: 193.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pets/new" for ::1 at 2016-03-02 22:30:12 -0500
+Processing by PetsController#new as HTML
+  Rendered pets/_form.html.erb (44.0ms)
+  Rendered pets/new.html.erb within layouts/application (70.0ms)
+Completed 200 OK in 230ms (Views: 228.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 22:30:27 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"WVsHThxBcV+TC2b4KIvSrCeGmX5MxfVnhO8TwOQ0t9YWPtqymv29IzUjeDDt5Ad/zJah/hLfJmQBivHCjHtbVg==", "pet"=>{"name"=>"ddd", "breed"=>"ddd", "pet_type"=>"ddd", "age"=>"12", "weight"=>"123", "last_appointment"=>"dsdf"}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 1.0ms)
+
+NoMethodError (undefined method `lastvisit' for #<Pet:0x5c903e8>):
+  app/controllers/pets_controller.rb:30:in `block in create'
+  app/controllers/pets_controller.rb:29:in `create'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (12.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (102.7ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (103.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (339.6ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 22:30:38 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9LOjDkIgw1OV8uZd/HTck5KszDJVfGCh3qxrQ94Ll9+71n7yxJwPLzPa+JU5GwlAebz0sgtms6JbyYlBtkR7Xw==", "pet"=>{"name"=>"ddd", "breed"=>"ddd", "pet_type"=>"ddd", "age"=>"12", "weight"=>"123", "last_appointment"=>"12/12/2015"}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.0ms)
+
+NoMethodError (undefined method `lastvisit' for #<Pet:0x747eac0>):
+  app/controllers/pets_controller.rb:30:in `block in create'
+  app/controllers/pets_controller.rb:29:in `create'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (103.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (99.1ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (226.1ms)
+
+
+Started GET "/" for ::1 at 2016-03-02 22:32:34 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 156ms (Views: 154.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/doctors" for ::1 at 2016-03-02 22:32:36 -0500
+Processing by DoctorsController#index as HTML
+  [1m[35mDoctor Load (0.0ms)[0m  SELECT "doctors".* FROM "doctors"
+  Rendered doctors/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 159ms (Views: 156.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pets" for ::1 at 2016-03-02 22:32:37 -0500
+Processing by PetsController#index as HTML
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 180ms (Views: 177.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pets/1/edit" for ::1 at 2016-03-02 22:32:55 -0500
+Processing by PetsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPet Load (0.0ms)[0m  SELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered pets/_form.html.erb (9.0ms)
+  Rendered pets/edit.html.erb within layouts/application (20.5ms)
+Completed 200 OK in 270ms (Views: 264.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pets" for ::1 at 2016-03-02 22:33:21 -0500
+Processing by PetsController#index as HTML
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 168ms (Views: 166.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pets/new" for ::1 at 2016-03-02 22:33:23 -0500
+Processing by PetsController#new as HTML
+  Rendered pets/_form.html.erb (8.0ms)
+  Rendered pets/new.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 168ms (Views: 166.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 22:33:46 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"E0dqBPs62nUNWfBpNf1JtvHlAkFwneY739u0Yn898O5cIrf4fYYWCatx7qHwkpxlGvU6wS6HNThavlZgF3Icbg==", "pet"=>{"name"=>"sdf", "breed"=>"dsf", "pet_type"=>"sdf", "age"=>"12", "weight"=>"123", "last_appointment"=>"12/12/2015"}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 1.0ms)
+
+NoMethodError (undefined method `lastvisit' for #<Pet:0x84f6ff0>):
+  app/controllers/pets_controller.rb:30:in `block in create'
+  app/controllers/pets_controller.rb:29:in `create'
+
+
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/actionpack-4.2.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (99.6ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.5ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (101.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/RailsInstaller/Ruby2.0.0/lib/ruby/gems/2.0.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (225.0ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 22:35:14 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"E0dqBPs62nUNWfBpNf1JtvHlAkFwneY739u0Yn898O5cIrf4fYYWCatx7qHwkpxlGvU6wS6HNThavlZgF3Icbg==", "pet"=>{"name"=>"sdf", "breed"=>"dsf", "pet_type"=>"sdf", "age"=>"12", "weight"=>"123", "last_appointment"=>"12/12/2015"}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[35m (0.5ms)[0m  begin transaction
+  [1m[36mSQL (18.0ms)[0m  [1mINSERT INTO "pets" ("name", "breed", "age", "weight", "last_appointment", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "sdf"], ["breed", "dsf"], ["age", 12], ["weight", 123], ["last_appointment", "12/12/2015"], ["created_at", "2016-03-03 03:35:14.846477"], ["updated_at", "2016-03-03 03:35:14.846477"]]
+  [1m[35m (19.0ms)[0m  commit transaction
+Redirected to http://localhost:4444/pets/2
+Completed 302 Found in 108ms (ActiveRecord: 40.5ms)
+
+
+Started GET "/pets/2" for ::1 at 2016-03-02 22:35:14 -0500
+Processing by PetsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1[0m  [["id", 2]]
+  Rendered pets/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 186ms (Views: 180.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 22:35:15 -0500
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:35:37 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[35mAppointment Load (1.0ms)[0m  SELECT "appointments".* FROM "appointments"
+  Rendered appointments/index.html.erb within layouts/application (24.5ms)
+Completed 200 OK in 191ms (Views: 177.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:36:27 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[36mAppointment Load (1.0ms)[0m  [1mSELECT "appointments".* FROM "appointments"[0m
+  [1m[35mPet Load (0.0ms)[0m  SELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mDoctor Load (2.0ms)[0m  [1mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mPet Load (1.0ms)[0m  SELECT  "pets".* FROM "pets" WHERE "pets"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "doctors".* FROM "doctors" WHERE "doctors"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered appointments/index.html.erb within layouts/application (74.0ms)
+Completed 200 OK in 243ms (Views: 237.1ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:36:27 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:36:27 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:36:27 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 22:36:27 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 22:36:27 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 22:36:27 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 22:36:27 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 22:36:27 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 22:36:27 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:36:27 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:36:28 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:36:28 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 22:36:28 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 22:36:28 -0500
+
+
+Started GET "/doctors" for ::1 at 2016-03-02 22:36:37 -0500
+Processing by DoctorsController#index as HTML
+  [1m[35mDoctor Load (1.0ms)[0m  SELECT "doctors".* FROM "doctors"
+  Rendered doctors/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 164ms (Views: 161.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pets" for ::1 at 2016-03-02 22:36:40 -0500
+Processing by PetsController#index as HTML
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 166ms (Views: 161.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/doctors" for ::1 at 2016-03-02 22:36:41 -0500
+Processing by DoctorsController#index as HTML
+  [1m[35mDoctor Load (1.0ms)[0m  SELECT "doctors".* FROM "doctors"
+  Rendered doctors/index.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 199ms (Views: 195.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-02 22:37:04 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 209ms (Views: 206.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (34.0ms)[0m  [1mDROP TABLE "appointments"[0m
+  [1m[35m (38.0ms)[0m  CREATE TABLE "appointments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pet_name" varchar, "doctor_name" varchar, "reason" text, "appointment_date" date, "doctor_id" integer, "pet_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (24.0ms)[0m  CREATE  INDEX "index_appointments_on_doctor_id" ON "appointments" ("doctor_id")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_appointments_on_doctor_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_appointments_on_doctor_id' AND type='index'
+[0m
+  [1m[35m (38.0ms)[0m  CREATE  INDEX "index_appointments_on_pet_id" ON "appointments" ("pet_id")
+  [1m[36m (40.0ms)[0m  [1mDROP TABLE "doctors"[0m
+  [1m[35m (42.0ms)[0m  CREATE TABLE "doctors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address" varchar, "city" varchar, "state" varchar, "zip" integer, "certified_by" varchar, "experience" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (42.0ms)[0m  [1mDROP TABLE "pets"[0m
+  [1m[35m (37.0ms)[0m  CREATE TABLE "pets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "breed" varchar, "pet_type" varchar, "age" integer, "weight" integer, "last_appointment" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (33.0ms)[0m  CREATE TABLE "appointments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "pet_name" varchar, "doctor_name" varchar, "reason" text, "appointment_date" date, "doctor_id" integer, "pet_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (60.1ms)[0m  CREATE  INDEX "index_appointments_on_doctor_id" ON "appointments" ("doctor_id")
+  [1m[36m (1.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_appointments_on_doctor_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_appointments_on_doctor_id' AND type='index'
+[0m
+  [1m[35m (67.7ms)[0m  CREATE  INDEX "index_appointments_on_pet_id" ON "appointments" ("pet_id")
+  [1m[36m (115.3ms)[0m  [1mCREATE TABLE "doctors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "address" varchar, "city" varchar, "state" varchar, "zip" integer, "certified_by" varchar, "experience" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (46.0ms)[0m  CREATE TABLE "pets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "breed" varchar, "pet_type" varchar, "age" integer, "weight" integer, "last_appointment" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (44.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (114.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.0ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (98.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160302082223')
+  [1m[36m (174.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160302073407')[0m
+  [1m[35m (110.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160302074132')
+  [1m[36m (70.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160302074414')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:41:45 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[36mAppointment Load (1.0ms)[0m  [1mSELECT "appointments".* FROM "appointments"[0m
+  Rendered appointments/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 177ms (Views: 166.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:41:57 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[35mAppointment Load (1.0ms)[0m  SELECT "appointments".* FROM "appointments"
+  Rendered appointments/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 143ms (Views: 140.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/appointments/new" for ::1 at 2016-03-02 22:41:59 -0500
+Processing by AppointmentsController#new as HTML
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT "pets".* FROM "pets"  ORDER BY "pets"."name" ASC[0m
+  [1m[35mDoctor Load (0.0ms)[0m  SELECT "doctors".* FROM "doctors"  ORDER BY "doctors"."name" ASC
+  Rendered appointments/_form.html.erb (48.0ms)
+  Rendered appointments/new.html.erb within layouts/application (55.0ms)
+Completed 200 OK in 205ms (Views: 186.1ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 22:44:34 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[36mAppointment Load (1.0ms)[0m  [1mSELECT "appointments".* FROM "appointments"[0m
+  Rendered appointments/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 248ms (Views: 236.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/pets" for ::1 at 2016-03-02 22:44:37 -0500
+Processing by PetsController#index as HTML
+  [1m[35mPet Load (1.0ms)[0m  SELECT "pets".* FROM "pets"
+  Rendered pets/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 161ms (Views: 145.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/doctors" for ::1 at 2016-03-02 22:44:40 -0500
+Processing by DoctorsController#index as HTML
+  [1m[36mDoctor Load (0.0ms)[0m  [1mSELECT "doctors".* FROM "doctors"[0m
+  Rendered doctors/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 160ms (Views: 146.0ms | ActiveRecord: 1.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ChangeLastAppointmentColumnTypeToDate (20160303041627)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (14.5ms)[0m  [1mCREATE TEMPORARY TABLE "apets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "breed" varchar, "pet_type" varchar, "age" integer, "weight" integer, "last_appointment" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.5ms)[0m  SELECT * FROM "pets"
+  [1m[36m (13.5ms)[0m  [1mDROP TABLE "pets"[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "pets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "breed" varchar, "pet_type" varchar, "age" integer, "weight" integer, "last_appointment" date, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.5ms)[0m  [1mSELECT * FROM "apets"[0m
+  [1m[35m (11.5ms)[0m  DROP TABLE "apets"
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160303041627"]]
+  [1m[35m (28.5ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_appointments_on_pet_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_appointments_on_pet_id' AND type='index'
+
+  [1m[36m (0.5ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_appointments_on_doctor_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_appointments_on_doctor_id' AND type='index'
+[0m
+
+
+Started GET "/" for ::1 at 2016-03-02 23:32:02 -0500
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 310ms (Views: 305.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pets" for ::1 at 2016-03-02 23:32:04 -0500
+Processing by PetsController#index as HTML
+  [1m[36mPet Load (1.0ms)[0m  [1mSELECT "pets".* FROM "pets"[0m
+  Rendered pets/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 320ms (Views: 294.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pets/new" for ::1 at 2016-03-02 23:32:06 -0500
+Processing by PetsController#new as HTML
+  Rendered pets/_form.html.erb (10.6ms)
+  Rendered pets/new.html.erb within layouts/application (78.4ms)
+Completed 200 OK in 326ms (Views: 309.1ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 23:32:08 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AavwSvp8A6Pl1gwiQ785MNGxDuybIW4SoDK0Ycl7xCtOzi22fMDP30P+EuqG0OzjOqE2bMU7vRElV1ZjoTQoqw==", "pet"=>{"name"=>"", "breed"=>"", "pet_type"=>"", "age"=>"", "weight"=>"", "last_appointment"=>""}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mrollback transaction[0m
+  Rendered pets/_form.html.erb (21.0ms)
+  Rendered pets/new.html.erb within layouts/application (28.0ms)
+Completed 200 OK in 226ms (Views: 204.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pets" for ::1 at 2016-03-02 23:32:53 -0500
+Processing by PetsController#index as HTML
+  [1m[35mPet Load (2.0ms)[0m  SELECT "pets".* FROM "pets"
+  Rendered pets/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 209ms (Views: 189.1ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/pets/new" for ::1 at 2016-03-02 23:32:55 -0500
+Processing by PetsController#new as HTML
+  Rendered pets/_form.html.erb (7.0ms)
+  Rendered pets/new.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 284ms (Views: 267.1ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 23:32:57 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"h6w9rTkQSBJb1cFm6/MCj+vin+Ok7vpQM4ohtRcW0XbIyeBRv6yEbv39364unNdcAPKnY/r0KVO278O3f1k99g==", "pet"=>{"name"=>"", "breed"=>"", "pet_type"=>"", "age"=>"", "weight"=>"", "last_appointment"=>""}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  Rendered pets/_form.html.erb (13.0ms)
+  Rendered pets/new.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 183ms (Views: 166.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 23:33:26 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ZOi5FYCKathQCTXK+jCLf/HRaklzWIybmCN73FB/kXIrjWTpBjampPYhKwI/X16sGsFSyS1CX5gdRpneODB98g==", "pet"=>{"name"=>"sdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww", "breed"=>"", "pet_type"=>"", "age"=>"", "weight"=>"", "last_appointment"=>""}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  rollback transaction
+  Rendered pets/_form.html.erb (15.0ms)
+  Rendered pets/new.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 240ms (Views: 188.6ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 23:33:41 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7fxj/lgfuLc3MTf/SO+EXiGy7eYLn0c1IogmjL76ulSimb4C3qN0y5EZKTeNgFGNyqLVZlWFlDan7cSO1rVW1A==", "pet"=>{"name"=>"", "breed"=>"", "pet_type"=>"DOG", "age"=>"", "weight"=>"", "last_appointment"=>""}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  Rendered pets/_form.html.erb (11.0ms)
+  Rendered pets/new.html.erb within layouts/application (17.1ms)
+Completed 200 OK in 292ms (Views: 275.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 23:35:05 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7fxj/lgfuLc3MTf/SO+EXiGy7eYLn0c1IogmjL76ulSimb4C3qN0y5EZKTeNgFGNyqLVZlWFlDan7cSO1rVW1A==", "pet"=>{"name"=>"", "breed"=>"", "pet_type"=>"DOG", "age"=>"", "weight"=>"", "last_appointment"=>""}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  Rendered pets/_form.html.erb (13.0ms)
+  Rendered pets/new.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 246ms (Views: 191.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 23:35:05 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 23:35:05 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 23:35:05 -0500
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 23:35:05 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 23:35:06 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 23:35:06 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 23:35:06 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 23:35:06 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 23:35:06 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 23:35:06 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 23:35:06 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 23:35:06 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 23:35:06 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 23:35:06 -0500
+
+
+Started POST "/pets" for ::1 at 2016-03-02 23:35:16 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5H0qzn86B6MCIumAb4mXZo3j+FqpCGNRNpVxGRy7dwerGPcy+YbL36QK90iq5kK1ZvPA2vcSsFKz8JMbdPSbhw==", "pet"=>{"name"=>"", "breed"=>"", "pet_type"=>"BIRD", "age"=>"", "weight"=>"", "last_appointment"=>""}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  Rendered pets/_form.html.erb (128.6ms)
+  Rendered pets/new.html.erb within layouts/application (136.5ms)
+Completed 200 OK in 318ms (Views: 298.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 23:35:25 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ide3xN2Zq6EVgOyf0E9DzAFt7sSEyJOVqrV/ybVxXlrGsmo4WyVn3bOo8lcVIJYf6n3WRNrSQJYv0J3L3T6y2g==", "pet"=>{"name"=>"", "breed"=>"", "pet_type"=>"CAT", "age"=>"", "weight"=>"", "last_appointment"=>""}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  Rendered pets/_form.html.erb (15.0ms)
+  Rendered pets/new.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 206ms (Views: 191.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 23:35:32 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"HQthKYSYXxjY9kSxRLwzG59jugDTdWdeDaYsAl5jDvVSbrzVAiSTZH7eWnmB0+bIdHOCgI1vtF2Iw84ANizidQ==", "pet"=>{"name"=>"", "breed"=>"", "pet_type"=>"cat", "age"=>"", "weight"=>"", "last_appointment"=>""}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  rollback transaction
+  Rendered pets/_form.html.erb (18.0ms)
+  Rendered pets/new.html.erb within layouts/application (24.0ms)
+Completed 200 OK in 209ms (Views: 191.1ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 23:36:06 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"sRb65uYDeN50QlpDNoB2p4B98bqQJOmZlyWbEPdHPO/+cycaYL+0otJqRIvz76N0a23JOs4+OpoSQHkSnwjQbw==", "pet"=>{"name"=>"", "breed"=>"", "pet_type"=>"sdf", "age"=>"", "weight"=>"", "last_appointment"=>""}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  Rendered pets/_form.html.erb (16.0ms)
+  Rendered pets/new.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 344ms (Views: 185.1ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/pets" for ::1 at 2016-03-02 23:36:23 -0500
+Processing by PetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"sRb65uYDeN50QlpDNoB2p4B98bqQJOmZlyWbEPdHPO/+cycaYL+0otJqRIvz76N0a23JOs4+OpoSQHkSnwjQbw==", "pet"=>{"name"=>"", "breed"=>"", "pet_type"=>"sdf", "age"=>"", "weight"=>"", "last_appointment"=>""}, "commit"=>"Create Pet"}
+Unpermitted parameter: pet_type
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  Rendered pets/_form.html.erb (14.0ms)
+  Rendered pets/new.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 349ms (Views: 287.1ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 23:36:24 -0500
+
+
+Started GET "/" for ::1 at 2016-03-02 23:40:15 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 379ms (Views: 377.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/doctors" for ::1 at 2016-03-02 23:48:20 -0500
+Processing by DoctorsController#index as HTML
+  [1m[36mDoctor Load (2.5ms)[0m  [1mSELECT "doctors".* FROM "doctors"[0m
+  Rendered doctors/index.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 282ms (Views: 255.6ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/pets" for ::1 at 2016-03-02 23:48:22 -0500
+Processing by PetsController#index as HTML
+  [1m[35mPet Load (0.0ms)[0m  SELECT "pets".* FROM "pets"
+  Rendered pets/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 219ms (Views: 196.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 23:48:23 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[36mAppointment Load (1.0ms)[0m  [1mSELECT "appointments".* FROM "appointments"[0m
+  Rendered appointments/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 460ms (Views: 387.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/doctors" for ::1 at 2016-03-02 23:48:25 -0500
+Processing by DoctorsController#index as HTML
+  [1m[35mDoctor Load (1.0ms)[0m  SELECT "doctors".* FROM "doctors"
+  Rendered doctors/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 216ms (Views: 213.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-02 23:48:26 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 145ms (Views: 143.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/appointments" for ::1 at 2016-03-02 23:48:30 -0500
+Processing by AppointmentsController#index as HTML
+  [1m[36mAppointment Load (1.0ms)[0m  [1mSELECT "appointments".* FROM "appointments"[0m
+  Rendered appointments/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 206ms (Views: 202.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/appointments/new" for ::1 at 2016-03-02 23:48:32 -0500
+Processing by AppointmentsController#new as HTML
+  [1m[35mPet Load (0.5ms)[0m  SELECT "pets".* FROM "pets"  ORDER BY "pets"."name" ASC
+  [1m[36mDoctor Load (0.5ms)[0m  [1mSELECT "doctors".* FROM "doctors"  ORDER BY "doctors"."name" ASC[0m
+  Rendered appointments/_form.html.erb (31.5ms)
+  Rendered appointments/new.html.erb within layouts/application (56.0ms)
+Completed 200 OK in 598ms (Views: 448.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-02 23:49:58 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (26.0ms)
+Completed 200 OK in 200ms (Views: 199.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-02 23:50:39 -0500
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 169ms (Views: 166.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/welcome.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 23:50:39 -0500
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-02 23:50:39 -0500
+
+
+Started GET "/assets/doctors.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 23:50:39 -0500
+
+
+Started GET "/assets/appointments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 23:50:39 -0500
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-02 23:50:40 -0500
+
+
+Started GET "/assets/scaffolds.self-8984c672f4025b09f870139caab47d7b3b147e554c3a0ba4d52430e3c248994e.css?body=1" for ::1 at 2016-03-02 23:50:40 -0500
+
+
+Started GET "/assets/pets.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-02 23:50:40 -0500
+
+
+Started GET "/assets/welcome.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 23:50:40 -0500
+
+
+Started GET "/assets/appointments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 23:50:40 -0500
+
+
+Started GET "/assets/pets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 23:50:40 -0500
+
+
+Started GET "/assets/doctors.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-02 23:50:40 -0500
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-02 23:50:40 -0500
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-02 23:50:40 -0500
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-02 23:50:40 -0500
